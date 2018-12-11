@@ -1,7 +1,7 @@
 $(document).ready(function(){
   var sharpCardSheets="grandstaffflash-page-00";
   var flatCardSheets="grandflatstaff-page-00";
-  var naturalCardSheets="grandnaturalStaff-page-00";
+  var naturalCardSheets="grandnaturalstaff-page-00";
   var sharpnoteCard=[];
   var sharphelperCard=[];
   var flatnoteCard=[];
@@ -15,7 +15,14 @@ $(document).ready(function(){
   var helperxPos=4*33.3;
   var helperyPos='0';
   $("#image").css('background-position',xPos+'%'+ yPos+'%');
-
+  function shuffleArray(array) {
+      for (var i = array.length - 1; i > 0; i--) {
+          var j = Math.floor(Math.random() * (i + 1));
+          var temp = array[i];
+          array[i] = array[j];
+          array[j] = temp;
+      }
+  }
 var setCropPositions=function(){for (i = 0; i < 8; i++) {
     if (i <4)
     {
@@ -40,7 +47,7 @@ var setCropPositions=function(){for (i = 0; i < 8; i++) {
 
 
     var buttonClick=function(){
-    $("button").click(function(){
+    $("#runGame").click(function(){
       //$.each(notes, function (index, value) {
         console.log(sharpnoteCard);
         console.log(sharpnoteCard.length);
@@ -48,9 +55,15 @@ var setCropPositions=function(){for (i = 0; i < 8; i++) {
         console.log(flatnoteCard);
         console.log(flatnoteCard.length);
         console.log(naturalnoteCard.length);
-        console.log(sharpnoteCard.length)
-        runThroughCards(flatnoteCard);
+        console.log(sharpnoteCard.length);
+        var combineArray=sharpnoteCard.concat(flatnoteCard,naturalnoteCard);
+    shuffleArray(combineArray);
+        runThroughCards(combineArray);
 
+  });
+  $("#cardSelector").click(function(){
+    $("#image").remove();
+$("#gameArea").append('<form> <label class="checkbox-inline"> <input type="checkbox" value="">Option 1</label> <label class="checkbox-inline"> <input type="checkbox" value="">Option 2  </label> <label class="checkbox-inline"> <input type="checkbox" value="">Option 2  </label> <label class="checkbox-inline"> <input type="checkbox" value="">Option 2  </label>   </form>') ;
   });}
 
   var runThroughCards=function(cardSet)
@@ -66,12 +79,20 @@ var setCropPositions=function(){for (i = 0; i < 8; i++) {
           $("#image").css("background","url("+whichPic+") 0px 0px");
     $("#image").css("background-size","400% 200%");
           $("#image").css('background-position',xPos+'%'+ yPos+'%');
+
+  var helperxPos=cardSet[k][3];
+              var helperyPos=cardSet[k][4];
+              var answerPic=cardSet[k][5];
+        setTimeout(function(){   $("#image").css("background","url("+answerPic+") 0px 0px");
+    $("#image").css("background-size","400% 200%");
+          $("#image").css('background-position',helperxPos+'%'+ helperyPos+'%');
+      }, 2200);clearTimeout();
           k+=1;
 
   }
   else{
     clearInterval();
-  }}, 1000);}
+  }}, 3500);}
 
   var cropSharps=function(type){
 
