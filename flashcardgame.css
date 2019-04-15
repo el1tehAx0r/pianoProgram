@@ -1,0 +1,32 @@
+#gameArea{left:25%;background-color: white; width: 30vw;border-style: ridge;
+    border-color:#C5B358;
+    border-width: 2vw; margin:auto;
+    height: 70vh;
+ position:absolute;text-align: center;background;  margin: auto;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+}
+#runGame{
+  bottom:30%;
+  left:10%;
+  position:absolute;
+}
+
+    #image {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+    background:
+    url('grandstaffflash-page-001.jpg') 0px 0px;
+     background-size: 400% 200%;
+
+
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    }
